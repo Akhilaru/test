@@ -1,0 +1,9 @@
+# NOTE:
+# This pipeline is designed for security scanning
+
+trigger: none
+pool:
+  vmImage: 'windows-latest'
+steps:
+- task: MicrosoftSecurityDevOps@1
+  displayName: 'Microsoft Security DevOps'
