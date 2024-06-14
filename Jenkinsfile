@@ -23,7 +23,7 @@ pipeline{
         }
         success{
             echo "====++++only when successful++++===="
-            build job: 'test', wait: false
+            build job: 'test'
         }
         failure{
             echo "====++++only when failed++++===="
