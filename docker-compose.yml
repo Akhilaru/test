@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:5000"
+    networks:
+      - local2
+networks:
+  local2:
