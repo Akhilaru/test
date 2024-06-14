@@ -17,4 +17,16 @@ pipeline{
             }
         }
     }
+    post{
+        always{
+            echo "====++++always++++===="
+        }
+        success{
+            echo "====++++only when successful++++===="
+            build job: 'test', wait: false
+        }
+        failure{
+            echo "====++++only when failed++++===="
+        }
+    }
 }
