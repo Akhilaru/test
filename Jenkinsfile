@@ -1,32 +1,20 @@
 pipeline{
     agent any
     stages{
-        stage("A"){
+        stage("fetching code"){
             steps{
-                echo "========executing A========"
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
+                git "https://github.com/Akhilaru/test.git"
+                echo "code fetched"
             }
         }
-    }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
+        stage("docker build"){
+            steps{
+                script{
+                    docker.build('flask_app:latest', '-f ./Dockerfile .')
+                    echo "docker build completed"
+                    sh "docker images"
+                }
+            }
         }
     }
 }
